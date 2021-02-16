@@ -1,0 +1,9 @@
+programa
+declare a,b,c.
+	escreva("Meu primeiro programa em ISI").
+	leia( a ).
+	leia( b ).
+	c := a + b.
+	escreva("O resultado da soma vale").
+	escreva( c ).
+fimprog
