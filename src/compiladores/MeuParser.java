@@ -22,15 +22,18 @@ public class MeuParser extends antlr.LLkParser       implements MeuParserTokenTy
 protected MeuParser(TokenBuffer tokenBuf, int k) {
   super(tokenBuf,k);
   tokenNames = _tokenNames;
+  
 }
 
 public MeuParser(TokenBuffer tokenBuf) {
   this(tokenBuf,1);
+  
 }
 
 protected MeuParser(TokenStream lexer, int k) {
   super(lexer,k);
   tokenNames = _tokenNames;
+  
 }
 
 public MeuParser(TokenStream lexer) {
@@ -45,32 +48,56 @@ public MeuParser(ParserSharedInputState state) {
 	public final void prog() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {      
 			mapaVar = new java.util.HashMap<String, String>();
 			match(LITERAL_programa);
 			declara();
+                        
+                        
+                        
+                        
+                        
 			bloco();
+                        
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex,_tokenSet_0);
+                        
 		}
+                
 	}
+        
 	
 	public final void declara() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {    
+                        System.out.println("");
+                        System.out.println("APRESENTAÇÃO DO MESMO CODIGO NA LINGUAGEM DE PROGRAMAÇÃO C");
+                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("#include<stdio.h>");
+                        System.out.println("int main (void) {");
+                        System.out.println("// Declaração de Variaveis em C");
+                        
 			match(LITERAL_declare);
 			match(T_Id);
 			mapaVar.put(LT(0).getText(), LT(0).getText());
+                        
+                        
+                       // System.out.println("int "+LT(0).getText()+";");
+                        
 			{
 			_loop4:
+                        
 			do {
 				if ((LA(1)==T_virg)) {
 					match(T_virg);
 					match(T_Id);
+                                        
+                                      //  System.out.println("int "+LT(0).getText()+";");
 					mapaVar.put(LT(0).getText(), LT(0).getText());
+                                        
 				}
 				else {
 					break _loop4;
@@ -83,13 +110,16 @@ public MeuParser(ParserSharedInputState state) {
 		catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex,_tokenSet_1);
+                       
+
+
 		}
 	}
 	
 	public final void bloco() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {      
 			{
 			int _cnt7=0;
 			_loop7:
@@ -104,42 +134,53 @@ public MeuParser(ParserSharedInputState state) {
 				_cnt7++;
 			} while (true);
 			}
+                        
 			match(LITERAL_fimprog);
+                        
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex,_tokenSet_0);
 		}
+                
 	}
 	
 	public final void cmd() throws RecognitionException, TokenStreamException {
+            
 		
 		
-		try {      // for error handling
+		try {      
 			switch ( LA(1)) {
 			case LITERAL_leia:
 			{
 				cmdLeia();
+                                
+                        //        System.out.println("scanf('&d'):");
 				match(T_pontof);
 				break;
 			}
 			case LITERAL_escreva:
 			{
 				cmdEscr();
+                                
 				match(T_pontof);
+                            //    System.out.println("print('');");
 				break;
 			}
 			case T_Id:
 			{
 				cmdAttr();
 				match(T_pontof);
+                                //System.out.println("Logica"+T_pontof);
 				break;
 			}
 			default:
 			{
 				throw new NoViableAltException(LT(1), getFilename());
+                                
 			}
 			}
+                        
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
@@ -150,12 +191,14 @@ public MeuParser(ParserSharedInputState state) {
 	public final void cmdLeia() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {     
 			match(LITERAL_leia);
 			match(T_ap);
 			match(T_Id);
+                       
 			
 				         if (mapaVar.get(LT(0).getText()) == null){
+                                          
 			throw new RuntimeException("ERROR ID "+LT(0).getText()+" not declared!");
 			}
 			
@@ -170,14 +213,18 @@ public MeuParser(ParserSharedInputState state) {
 	public final void cmdEscr() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {      
 			match(LITERAL_escreva);
 			match(T_ap);
 			{
 			switch ( LA(1)) {
+                        
 			case T_texto:
 			{
+                               
 				match(T_texto);
+                                
+                                
 				break;
 			}
 			case T_Id:
@@ -207,7 +254,7 @@ public MeuParser(ParserSharedInputState state) {
 	public final void cmdAttr() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {      
 			match(T_Id);
 			
 				                if (mapaVar.get(LT(0).getText()) == null){
@@ -268,7 +315,7 @@ public MeuParser(ParserSharedInputState state) {
 	public final void termo() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {    
 			fator();
 			{
 			_loop20:
@@ -310,7 +357,7 @@ public MeuParser(ParserSharedInputState state) {
 	public final void fator() throws RecognitionException, TokenStreamException {
 		
 		
-		try {      // for error handling
+		try {      
 			switch ( LA(1)) {
 			case T_Id:
 			{

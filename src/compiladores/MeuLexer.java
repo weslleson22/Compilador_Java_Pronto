@@ -51,12 +51,17 @@ public Token nextToken() throws TokenStreamException {
 	Token theRetToken=null;
 tryAgain:
 	for (;;) {
+            
 		Token _token = null;
 		int _ttype = Token.INVALID_TYPE;
 		resetText();
-		try {   // for char stream error handling
-			try {   // for lexical error handling
+               
+		try {
+                    
+                     
+			try {   
 				switch ( LA(1)) {
+                                
 				case 'A':  case 'B':  case 'C':  case 'D':
 				case 'E':  case 'F':  case 'G':  case 'H':
 				case 'I':  case 'J':  case 'K':  case 'L':
@@ -71,8 +76,11 @@ tryAgain:
 				case 's':  case 't':  case 'u':  case 'v':
 				case 'w':  case 'x':  case 'y':  case 'z':
 				{
+                                    
 					mT_Id(true);
 					theRetToken=_returnToken;
+                                        
+                                        
 					break;
 				}
 				case '0':  case '1':  case '2':  case '3':
@@ -81,12 +89,17 @@ tryAgain:
 				{
 					mT_num(true);
 					theRetToken=_returnToken;
-					break;
+					//System.out.println(theRetToken.getText());
+                                        
+                                       
+                                        break;
+                                        
 				}
 				case '+':
 				{
 					mT_soma(true);
 					theRetToken=_returnToken;
+                                        
 					break;
 				}
 				case '-':
@@ -147,19 +160,110 @@ tryAgain:
 				{
 					mT_blank(true);
 					theRetToken=_returnToken;
-					break;
+					
+                                        break;
+                                        
 				}
+                                
 				default:
 				{
+                                    
 					if (LA(1)==EOF_CHAR) {uponEOF(); _returnToken = makeToken(Token.EOF_TYPE);}
+                                        
 				else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
+                                
 				}
-				if ( _returnToken==null ) continue tryAgain; // found SKIP token
+                                
+                                //
+				if ( _returnToken==null ) continue tryAgain; 
 				_ttype = _returnToken.getType();
+                                
 				_ttype = testLiteralsTable(_ttype);
 				_returnToken.setType(_ttype);
-				return _returnToken;
+                                
+				 if (_returnToken == _returnToken){
+                                      if(theRetToken.getColumn() == 9 && theRetToken.getLine() == 2 ){
+                                         
+                                         System.out.print("int ");
+                                         System.out.print(theRetToken.getText());
+                                     }
+                                    
+                                     if(theRetToken.getColumn() == 11 && theRetToken.getLine() == 2 ){
+                                         
+                                         System.out.print(",");
+                                         System.out.print(theRetToken.getText());
+                                     }
+                                      if(theRetToken.getColumn() == 13 && theRetToken.getLine() == 2 ){
+                                         
+                                         System.out.print(",");
+                                         System.out.print(theRetToken.getText());
+                                         System.out.print(";");
+                                     }
+                                      if(theRetToken.getColumn() == 17 && theRetToken.getLine() == 3 ){
+                                         
+                                         System.out.println();
+                                         System.out.print("printf("+theRetToken.getText());
+                                         System.out.println(");");
+                                     }
+                                      if(theRetToken.getColumn() == 15 && theRetToken.getLine() == 5 ){
+                                         System.out.print("//Comando Leia");
+                                         System.out.println();
+                                         System.out.print("scanf(''%d'', &"+theRetToken.getText());
+                                         System.out.println(");");
+                                     }
+                                      if(theRetToken.getColumn() == 15 && theRetToken.getLine() == 6 ){
+                                         
+                                         
+                                         System.out.println("//Comando Leia");
+                                         System.out.print("scanf(''%d'', &"+theRetToken.getText());
+                                         System.out.println(");");
+                                     }
+                                      //Calculo C=a*b
+                                      if(theRetToken.getColumn() == 9 && theRetToken.getLine() == 8 ){
+                                         
+                                         
+                                         System.out.print(theRetToken.getText());
+                                         System.out.print("=");
+                                     }
+                                       if(theRetToken.getColumn() == 14 && theRetToken.getLine() ==8 ){
+                                         
+                                         
+                                         System.out.print(theRetToken.getText());
+                                         
+                                     }
+                                       if(theRetToken.getColumn() == 16 && theRetToken.getLine() ==8 ){
+                                         
+                                         
+                                         System.out.print(theRetToken.getText());
+                                         
+                                     }
+                                       if(theRetToken.getColumn() == 18 && theRetToken.getLine() ==8 ){
+                                         
+                                         
+                                         System.out.print(theRetToken.getText());
+                                         System.out.println(";");
+                                     }
+                                      if(theRetToken.getColumn() == 17 && theRetToken.getLine() ==9 ){
+                                         
+                                         
+                                         System.out.println("//Comando escreva");
+                                         System.out.print("print("+theRetToken.getText());
+                                         System.out.println(");");
+                                     }  
+                                      if(theRetToken.getColumn() == 18 && theRetToken.getLine() ==10 ){
+                                         
+                                         System.out.println("//Comando escreva");
+                                         System.out.print("print("+theRetToken.getText());
+                                         System.out.println(");");
+                                     }  
+                                            
+                                        }
+                               // System.out.println(_returnToken);
+                                        
+                                return _returnToken;
+                                
+                                
 			}
 			catch (RecognitionException e) {
 				throw new TokenStreamRecognitionException(e);
@@ -171,9 +275,13 @@ tryAgain:
 			}
 			else {
 				throw new TokenStreamException(cse.getMessage());
+                                
 			}
+                        
 		}
+                
 	}
+
 }
 
 	public final void mT_Id(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
@@ -213,6 +321,7 @@ tryAgain:
 		}
 		{
 		_loop25:
+                 
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -256,6 +365,7 @@ tryAgain:
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
 		}
 		_returnToken = _token;
+                
 	}
 	
 	public final void mT_num(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
@@ -282,6 +392,7 @@ tryAgain:
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
 		}
 		_returnToken = _token;
+                
 	}
 	
 	public final void mT_soma(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
@@ -293,6 +404,7 @@ tryAgain:
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
 			_token = makeToken(_ttype);
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
+                        
 		}
 		_returnToken = _token;
 	}
@@ -301,6 +413,8 @@ tryAgain:
 		int _ttype; Token _token=null; int _begin=text.length();
 		_ttype = T_subt;
 		int _saveIndex;
+                
+
 		
 		match('-');
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
@@ -308,6 +422,8 @@ tryAgain:
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
 		}
 		_returnToken = _token;
+                
+
 	}
 	
 	public final void mT_mult(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
@@ -321,6 +437,7 @@ tryAgain:
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
 		}
 		_returnToken = _token;
+                
 	}
 	
 	public final void mT_divi(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
@@ -386,6 +503,7 @@ tryAgain:
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
 		}
 		_returnToken = _token;
+                
 	}
 	
 	public final void mT_texto(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
@@ -472,6 +590,7 @@ tryAgain:
 		case ' ':
 		{
 			match(' ');
+                       
 			break;
 		}
 		case '\n':
@@ -502,6 +621,7 @@ tryAgain:
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
 		}
 		_returnToken = _token;
+                
 	}
 	
 	

@@ -1,9 +1,11 @@
 programa
-declare a,b,c.
-	escreva("Meu primeiro programa em ISI").
-	leia( a ).
+declare h,b,c.
+	escreva("Meu primeiro praograma ").
+        
+	leia( h ).
 	leia( b ).
-	c := a + b.
+       
+	c := h + b.
 	escreva("O resultado da soma vale").
 	escreva( c ).
 fimprog
